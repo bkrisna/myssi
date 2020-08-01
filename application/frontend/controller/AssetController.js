@@ -149,5 +149,9 @@ Ext.define('MYSSI.controller.AssetController', {
     {
         r.destroy();
         this.getAssetListsStore().load();
+    },
+
+    test: function (test) {
+        return null;
     }
 });
