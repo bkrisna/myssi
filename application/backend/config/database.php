@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'myssiadmin';
-$db['default']['password'] = 'myssiadmin';
+$db['default']['password'] = 'Welcome.4.Admin';
 $db['default']['database'] = 'myssidb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
