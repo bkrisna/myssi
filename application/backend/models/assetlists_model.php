@@ -2,14 +2,23 @@
 
 class AssetLists_model extends CI_Model {
 
-	private $table;
+    private $table;
+    private $table_join;
 	private $table_fields;
 	private $table_fields_join;
 
     function __construct() {
         parent::__construct();
 
-		$this->table = 'myssi_assets';
+        $this->table = 'myssi_assets';
+        $this->table_join = array( 
+            array(
+                'table_name' => 'myssi_asset_type',
+                'key_field' => 'id',
+                'foreign_field' => $this->table.'asset_type',
+                'join_type' => 'left'     
+            )
+        );
 
 		$this->table_fields = array(
 			$this->table.'.id',
@@ -24,12 +33,20 @@ class AssetLists_model extends CI_Model {
             $this->table.'.asset_memory'
 		);
 
-		$this->table_fields_join = array();
+		$this->table_fields_join = array(
+            $this->table_join[0]['table_name'].'type_name'
+        );
     }
 
     function get_all_entries($filter = array(), $limit = '45', $offset = '0', $order = '') {
 		$this->db->select(implode(', ', array_merge($this->table_fields, $this->table_fields_join)));
 		$this->db->from($this->table);
+
+        if (is_array($this->table_join) && count($this->table_join) > 0) {
+            foreach($join as $joins) {
+                $this->db->join($join['table_name'], $join['table_name'].'.'.$join['key_field'].' = '.$join['foreign_field'], $join['join_type']);
+            }
+        }
 
 		if (is_array($filter) && count($filter) > 0) generate_filter($filter);
 
