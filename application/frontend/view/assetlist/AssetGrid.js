@@ -75,13 +75,13 @@ Ext.define('MYSSI.view.assetlist.AssetGrid' ,{
 			},{
 				header: 'Asset Model',
 				flex:1,
-                dataIndex: 'asset_model_id',
-                renderer: function(value) {
+                dataIndex: 'type_name',
+                /*renderer: function(value) {
                     var modelStor = Ext.create('MYSSI.store.AssetModels');
                     modelStor.load();
                     var rec = modelStor.getById(value);
                     return (rec) ? rec.get('model_name') : '&mdash; ' + modelStor.getTotalCount();
-                }
+                }*/
 			},{
 				header: 'Serial Number',
 				flex:1,

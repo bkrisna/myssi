@@ -17,6 +17,9 @@ Ext.define('MYSSI.model.AssetList', {
         name: 'asset_type',
         type: 'int'
     }, {
+        name: 'type_name',
+        type: 'string'
+    }, {
         name: 'is_engineered',
         type: 'bool'
     }, {

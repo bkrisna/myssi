@@ -15,7 +15,7 @@ class AssetLists_model extends CI_Model {
             array(
                 'table_name' => 'myssi_asset_type',
                 'key_field' => 'id',
-                'foreign_field' => $this->table.'asset_type',
+                'foreign_field' => $this->table.'.asset_type',
                 'join_type' => 'left'     
             )
         );
@@ -34,7 +34,7 @@ class AssetLists_model extends CI_Model {
 		);
 
 		$this->table_fields_join = array(
-            $this->table_join[0]['table_name'].'type_name'
+            $this->table_join[0]['table_name'].'.type_name'
         );
     }
 
@@ -43,7 +43,7 @@ class AssetLists_model extends CI_Model {
 		$this->db->from($this->table);
 
         if (is_array($this->table_join) && count($this->table_join) > 0) {
-            foreach($join as $joins) {
+            foreach($this->table_join as $join) {
                 $this->db->join($join['table_name'], $join['table_name'].'.'.$join['key_field'].' = '.$join['foreign_field'], $join['join_type']);
             }
         }
