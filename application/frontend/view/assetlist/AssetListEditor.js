@@ -64,5 +64,5 @@ Ext.define('MYSSI.view.assetlist.AssetListEditor', {
         labelWidth: 100
     }],
     
-    saveText: "Save Type"
+    saveText: "Save"
 });

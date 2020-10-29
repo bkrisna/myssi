@@ -23,7 +23,7 @@ Ext.define('MYSSI.view.assetlist.AssetSurface', {
                 store: 'AssetLists'
 			}, {
                 xtype: 'tabpanel',
-                title: "Part Details",
+                title: "Asset Details",
                 width: 300,
                 collapsed: true,
                 collapsible: true,
