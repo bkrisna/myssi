@@ -18,11 +18,11 @@ Ext.define('MYSSI.view.Surface', {
             },{
                 xtype: 'tabpanel',
                 region: 'center',
-                items: [{
+                items: [/*{
                     xtype: 'AssetSurface',
                     title: 'Asset Manager',
                     iconCls: 'web-icon brick',
-                }/*, {
+                }, {
                     xtype: 'CustomerSurface',
                     title: 'Customer Manager',
                     iconCls: 'fugue-icon user-business'
@@ -30,11 +30,11 @@ Ext.define('MYSSI.view.Surface', {
                     xtype: 'DacenSurface',
                     title: 'Datacenter Manager',
                     iconCls: 'web-icon building_key'
-                }, {
+                },*/ {
                     xtype: 'MasterDataSurface',
                     title: 'Master Data Manager',
                     iconCls: 'web-icon database_gear'
-                }*/]
+                }]
 			}],
 			
 			dockedItems: [{

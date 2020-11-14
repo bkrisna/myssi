@@ -9,7 +9,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'StorageTypes',
         'EngineeredTypes',
         'IpTypes',
-        'CredentialTypes'
+        'CredentialTypes',
+        'ProjectStates'
     ],
 
     models:	[
@@ -21,7 +22,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'StorageType',
         'EngineeredType',
         'IpType',
-        'CredentialType'
+        'CredentialType',
+        'ProjectState'
     ],
 
     views: 	[
@@ -35,6 +37,7 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'masterdata.editors.EngineeredTypeEditor',
         'masterdata.editors.IpTypeEditor',
         'masterdata.editors.CredentialTypeEditor',
+        'masterdata.editors.ProjectStateEditor',
         'masterdata.grids.DacenTypeGrid',
         'masterdata.grids.DacenStateGrid',
         'masterdata.grids.VendorTypeGrid',
@@ -43,7 +46,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'masterdata.grids.StorageTypeGrid',
         'masterdata.grids.EngineeredTypeGrid',
         'masterdata.grids.IpTypeGrid',
-        'masterdata.grids.CredentialTypeGrid'
+        'masterdata.grids.CredentialTypeGrid',
+        'masterdata.grids.ProjectStateGrid'
     ],
 
     refs: [{
@@ -76,6 +80,9 @@ Ext.define('MYSSI.controller.MasterDataController', {
     }, {
 		ref         : 'credentialTypeGrid',
 		selector    : 'CredentialTypeGrid'
+    }, {
+		ref         : 'projectStateGrid',
+		selector    : 'ProjectStateGrid'
     }],
     
     editorWindow: null,
@@ -92,7 +99,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'type_name',
         'engineeredTypeGrid': 'type_name',
         'ipTypeGrid'        : 'type_name',
-        'credentialTypeGrid': 'type_name'
+        'credentialTypeGrid': 'type_name',
+        'projectStateGrid'  : 'state_name'
     },
 
     storeClassName: {
@@ -104,7 +112,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'StorageTypes',
         'engineeredTypeGrid': 'EngineeredTypes',
         'ipTypeGrid'        : 'IpTypes',
-        'credentialTypeGrid': 'CredentialTypes'
+        'credentialTypeGrid': 'CredentialTypes',
+        'dacenStateGrid'    : 'ProjectStates'
     },
 
     modelClassName: {
@@ -116,7 +125,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'StorageType',
         'engineeredTypeGrid': 'EngieneeredType',
         'ipTypeGrid'        : 'IpType',
-        'credentialTypeGrid': 'CredentialType'
+        'credentialTypeGrid': 'CredentialType',
+        'dacenStateGrid'    : 'ProjectState'
     },
 
     modelClass: {
@@ -140,7 +150,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'Add new storage type',
         'engineeredTypeGrid': 'Add new engineered system type',
         'ipTypeGrid'        : 'Add new IP Address type',
-        'credentialTypeGrid': 'Add new credential type'
+        'credentialTypeGrid': 'Add new credential type',
+        'projectStateGrid'  : 'Add new project state'
     },
 
     editTitle: {
@@ -152,7 +163,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'Edit storage type',
         'engineeredTypeGrid': 'Edit engineered system type',
         'ipTypeGrid'        : 'Edit IP Address type',
-        'credentialTypeGrid': 'Edit credential type'
+        'credentialTypeGrid': 'Edit credential type',
+        'projectStateGrid'  : 'Edit project state'
     },
 
     deleteTitle: {
@@ -164,7 +176,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'Delete storage type',
         'engineeredTypeGrid': 'Delete engineered system type',
         'ipTypeGrid'        : 'Delete IP Address type',
-        'credentialTypeGrid': 'Delete credential type'
+        'credentialTypeGrid': 'Delete credential type',
+        'projectStateGrid'  : 'Delete project state'
     },
 
     editorClass: {
@@ -176,7 +189,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
         'storageTypeGrid'   : 'MYSSI.view.masterdata.editors.StorageTypeEditor',
         'engineeredTypeGrid': 'MYSSI.view.masterdata.editors.EngineeredTypeEditor',
         'ipTypeGrid'        : 'MYSSI.view.masterdata.editors.IpTypeEditor',
-        'credentialTypeGrid': 'MYSSI.view.masterdata.editors.CredentialTypeEditor'
+        'credentialTypeGrid': 'MYSSI.view.masterdata.editors.CredentialTypeEditor',
+        'projectStateGrid'  : 'MYSSI.view.masterdata.editors.ProjectStateEditor'
     },
 
     init: function() {
@@ -262,6 +276,15 @@ Ext.define('MYSSI.controller.MasterDataController', {
                 buttonSearchClick   : this.searchButtonClick,
 				buttonClearClick    : this.clearButtonClick
             },
+            'ProjectStateGrid': {
+                itemAdd     : this.newRecord,
+                itemDelete  : this.confirmDelete,
+                itemEdit    : this.startEdit
+            },
+            'ProjectStateGrid > toolbar > searchfield': {
+                buttonSearchClick   : this.searchButtonClick,
+				buttonClearClick    : this.clearButtonClick
+            },
         });
     },
 
@@ -295,8 +318,8 @@ Ext.define('MYSSI.controller.MasterDataController', {
             case 'ipTypeGrid':
                 return this.getIpTypeGrid();
                 break;
-            case 'credentialTypeGrid':
-                return this.getCredentialTypeGrid();
+            case 'projectStateGrid':
+                return this.getProjectStateGrid();
                 break;
             default:
                 return null;
@@ -331,6 +354,12 @@ Ext.define('MYSSI.controller.MasterDataController', {
                 break;
             case 'credentialTypeGrid':
                 return this.getCredentialTypesStore();
+                break;
+            case 'credentialTypeGrid':
+                return this.getCredentialTypesStore();
+                break;
+            case 'projectStateGrid':
+                return this.getProjectStatesStore();
                 break;
             default:
                 return null;

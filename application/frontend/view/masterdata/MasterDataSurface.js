@@ -97,6 +97,16 @@ Ext.define('MYSSI.view.masterdata.MasterDataSurface', {
                     border: true,
                     store: 'CredentialTypes',
                 }]
+            }, {
+                title: 'Project State',
+                iconCls: 'web-icon database_table',
+                border: true,
+                layout: 'fit',
+				items: [{
+					xtype: 'ProjectStateGrid',
+                    border: true,
+                    store: 'ProjectStates',
+                }]
             }]
         });
         this.callParent(arguments);
