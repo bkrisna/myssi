@@ -17,7 +17,7 @@ Ext.define('MYSSI.view.projectlist.ProjectSurface', {
                 region: 'west',
                 width: 300,
                 split: true,
-                store: 'Customers',
+                store: 'Projects',
                 titleProperty: this.titleProperty
             }, {
 				xtype: this.editorClass,
@@ -31,7 +31,7 @@ Ext.define('MYSSI.view.projectlist.ProjectSurface', {
     },
 
     statics: {
-        iconCls: 'fugue-icon user-business',
+        iconCls: 'fugue-icon report',
         title: 'Project Manager',
         closable: true,
         menuPath: [{text: "Edit"}]

@@ -10,14 +10,15 @@ class Projects_model extends CI_Model {
         parent::__construct();
 
         $this->table = 'myssi_projects';
-        $this->table_join = array( 
+        /*$this->table_join = array( 
             array(
                 'table_name' => 'myssi_project_state',
                 'key_field' => 'id',
                 'foreign_field' => $this->table.'.status',
                 'join_type' => 'left'     
             )
-        );
+        );*/
+        $this->table_join = array();
 
 		$this->table_fields = array(
 			$this->table.'.id',
@@ -28,14 +29,21 @@ class Projects_model extends CI_Model {
             $this->table.'.status'
 		);
 
-		$this->table_fields_join = array(
+		/*$this->table_fields_join = array(
             $this->table_join[0]['table_name'].'.state_name'
-        );
+        );*/
+        $this->table_fields_join = array();
     }
 
     function get_all_entries($filter = array(), $limit = '45', $offset = '0', $order = '') {
 		$this->db->select(implode(', ', array_merge($this->table_fields, $this->table_fields_join)));
 		$this->db->from($this->table);
+
+        if (is_array($this->table_join) && count($this->table_join) > 0) {
+            foreach($this->table_join as $join) {
+                $this->db->join($join['table_name'], $join['table_name'].'.'.$join['key_field'].' = '.$join['foreign_field'], $join['join_type']);
+            }
+        }
 
 		if (is_array($filter) && count($filter) > 0) generate_filter($filter);
 

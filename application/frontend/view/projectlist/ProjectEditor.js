@@ -5,32 +5,41 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
 
     items: [{
             xtype: 'textfield',
-            name: 'custname',
-            fieldLabel: "Customer Name"
+            name: 'projectname',
+            fieldLabel: "Project Name"
         }, {
             xtype: 'textfield',
-            name: 'custalias',
-            fieldLabel: "Customer Alias"
+            name: 'iwo',
+            fieldLabel: "Project IWO"
         }, {
-            xtype: 'textarea',
-            name: 'custaddr',
-            fieldLabel: "Customer Address"
+            xtype: 'container',
+            anchor: '100%',
+            layout: 'hbox',
+            items: [{
+                xtype: 'container',
+                flex: 1,
+                layout: 'anchor',
+                items: [{
+                    xtype: 'datefield',
+                    name: 'start_date',
+                    labelWidth: 150,
+                    fieldLabel: "Project Start Date"
+                }]
+            }, {
+                xtype: 'container',
+                flex: 1,
+                layout: 'anchor',
+                items: [{
+                    xtype: 'datefield',
+                    name: 'end_date',
+                    labelWidth: 150,
+                    fieldLabel: "Project End Date"
+                }]
+            }]
         }, {
             xtype: 'textfield',
-            name: 'custweb',
-            fieldLabel: "Customer Website"
-        }, {
-            xtype: 'textfield',
-            name: 'custphone',
-            fieldLabel: "Phone"
-        }, {
-            xtype: 'textfield',
-            name: 'custfax',
-            fieldLabel: "Fax"
-        }, {
-            xtype: 'textarea',
-            name: 'note',
-            fieldLabel: "Note"
+            name: 'status',
+            fieldLabel: "Project Status"
         }
     ],
     saveText: "Save Project"

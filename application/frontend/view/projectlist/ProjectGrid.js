@@ -6,11 +6,11 @@ Ext.define('MYSSI.view.projectlist.ProjectGrid' ,{
 
 	deleteButtonText: "Delete Project",
     deleteButtonIcon: '',
-    deleteButtonIconCls: 'web-icon user_delete',
+    deleteButtonIconCls: 'web-icon report_delete',
 
     addButtonText: "Add Project",
     addButtonIcon: '',
-    addButtonIconCls: 'web-icon user_add',
+    addButtonIconCls: 'web-icon report_add',
 
 	
 	initComponent: function() {
@@ -65,9 +65,9 @@ Ext.define('MYSSI.view.projectlist.ProjectGrid' ,{
 				dataIndex: 'id',
 				flex:0
 			},{
-				header: 'Customer Name',
+				header: 'Project Name',
 				flex:1,
-				dataIndex: 'custname'
+				dataIndex: 'projectname'
 			}]
         });
 		

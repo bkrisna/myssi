@@ -3,54 +3,54 @@ Ext.define('MYSSI.controller.ProjectController', {
     stores:	['Projects'],
     models:	['Project'],
     views: 	[
-        'customerlist.CustomerSurface',
-        'customerlist.CustomerGrid', 
-        'customerlist.CustomerEditor',
-        'customerlist.CustomerEditorTab',
+        'projectlist.ProjectSurface',
+        'projectlist.ProjectGrid', 
+        'projectlist.ProjectEditor',
+        'projectlist.ProjectEditorTab',
     ],
 
-    storeClassName: 'Customers',
-    modelClassName: 'Customer',
+    storeClassName: 'Projects',
+    modelClassName: 'Project',
 
-    storeClass: 'MYSSI.store.Customers',
-    modelClass: 'MYSSI.model.Customer',
+    storeClass: 'MYSSI.store.Projects',
+    modelClass: 'MYSSI.model.Project',
 
-    navigationClass: 'CustomerGrid',
-	editorClass: 'CustomerEditor',
-	newItemText: "New Customer",
+    navigationClass: 'ProjectGrid',
+	editorClass: 'ProjectEditor',
+	newItemText: "New Project",
 
-    deleteMessage: "Do you really wish to delete the customer ",
-    deleteTitle: "Delete Customer",
-    newItemText: "New Customer",
+    deleteMessage: "Do you really wish to delete the project ",
+    deleteTitle: "Delete Project",
+    newItemText: "New Project",
 
     /**
      * @var {string} The record field to read the title property from
      */
-    titleProperty: 'custalias',
+    titleProperty: 'projectname',
 
     refs: [{
-		ref: 'custSurface',
-		selector: 'CustomerSurface'
+		ref: 'projSurface',
+		selector: 'ProjectSurface'
 	}, {
 		ref: 'navigation',
-		selector: 'CustomerGrid'
+		selector: 'ProjectGrid'
 	}, {
 		ref: 'editorPanel',
-		selector: 'CustomerEditor'
+		selector: 'ProjectEditor'
 	}, {
         ref: 'editorTabPanel',
-		selector: 'CustomerEditorTab'
+		selector: 'ProjectEditorTab'
     }],
 
     init: function() {
         this.control({
-            'CustomerGrid': {
+            'ProjectGrid': {
                 itemAdd: this.newRecord,
                 itemDelete: this.confirmDelete,
                 itemEdit: this.startEdit,
                 itemSelect: this.startEdit
             },
-            'CustomerGrid > toolbar > searchfield': {
+            'ProjectGrid > toolbar > searchfield': {
                 buttonSearchClick: this.searchButtonClick,
 				buttonClearClick: this.clearButtonClick
             },
@@ -58,19 +58,19 @@ Ext.define('MYSSI.controller.ProjectController', {
     },
 
     searchButtonClick: function(val) {
-        this.getCustomersStore().load({ params: { query: val } });
+        this.getProjectsStore().load({ params: { query: val } });
     },
     
     clearButtonClick: function(e) {
-        this.getCustomersStore().load();
+        this.getProjectsStore().load();
     },
 
     createEditor: function (title)
     {
-        var editor = Ext.widget('CustomerEditor', {
+        var editor = Ext.widget('ProjectEditor', {
             store: this.storeClassName,
             title: title,
-            iconCls: 'fugue-icon user-business',
+            iconCls: 'fugue-icon report-paper',
             model: this.modelClassName,
             closable: true,
             titleProperty: this.titleProperty,
@@ -121,7 +121,7 @@ Ext.define('MYSSI.controller.ProjectController', {
 
     onItemSaved: function (record)
     {
-        this.getCustomersStore().load();
+        this.getProjectsStore().load();
     },
 
     newRecord: function (defaults)
@@ -161,6 +161,6 @@ Ext.define('MYSSI.controller.ProjectController', {
         }
 
         r.destroy();
-        this.getCustomersStore().load();
+        this.getProjectsStore().load();
     },
 });

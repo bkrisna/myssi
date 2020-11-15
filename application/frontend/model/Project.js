@@ -5,26 +5,35 @@ Ext.define('MYSSI.model.Project', {
         name: 'id',
         type: 'int'
     }, {
-        name: 'dcname',
+        name: 'projectname',
         type: 'string'
     }, {
-        name: 'dcaddress',
+        name: 'iwo',
         type: 'string'
     }, {
-        name: 'dcstate',
+        name: 'start_date',
+        type: 'date'
+    }, {
+        name: 'end_date',
+        type: 'date'
+    }, {
+        name: 'status',
         type: 'int'
+    }, {
+        name: 'state_name',
+        type: 'string'
     }],
     
     idProperty: 'id',
-    titleProperty: 'dcname',
+    titleProperty: 'projectname',
 
     proxy: {
         type: 'custProxy',
         api: {
-            create: 'datacenters/create', 
-            read: 'datacenters/read',
-            update: 'datacenters/update',
-            destroy: 'datacenters/destroy',
+            create: 'projects/create', 
+            read: 'projects/read',
+            update: 'projects/update',
+            destroy: 'projects/destroy',
         },
         reader: {
             type: 'json',

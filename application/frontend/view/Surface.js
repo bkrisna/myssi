@@ -31,10 +31,14 @@ Ext.define('MYSSI.view.Surface', {
                     title: 'Datacenter Manager',
                     iconCls: 'web-icon building_key'
                 },*/ {
+                    xtype: 'ProjectSurface',
+                    title: 'Project Manager',
+                    iconCls: 'web-icon report_picture'
+                }/*, {
                     xtype: 'MasterDataSurface',
                     title: 'Master Data Manager',
                     iconCls: 'web-icon database_gear'
-                }]
+                }*/]
 			}],
 			
 			dockedItems: [{
