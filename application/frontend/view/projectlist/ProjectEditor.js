@@ -37,9 +37,16 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 }]
             }]
         }, {
-            xtype: 'textfield',
+            xtype: 'combobox',
             name: 'status',
-            fieldLabel: "Project Status"
+            editable: 'false',
+            fieldLabel: "Project State",
+            store: 'ProjectStates',
+            displayField: 'state_name',
+            valueField: 'id',
+            queryMode: 'remote',
+            allowBlank: 'false',
+            emptyText: '-- select state --'
         }
     ],
     saveText: "Save Project"

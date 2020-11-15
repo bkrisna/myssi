@@ -1,7 +1,15 @@
 Ext.define('MYSSI.controller.ProjectController', {
     extend:	'Ext.app.Controller',
-    stores:	['Projects'],
-    models:	['Project'],
+    stores:	[
+                'Projects',
+                'ProjectStates'
+            ],
+
+    models:	[
+                'Project',
+                'ProjectState'
+            ],
+
     views: 	[
         'projectlist.ProjectSurface',
         'projectlist.ProjectGrid', 

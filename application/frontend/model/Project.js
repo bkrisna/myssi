@@ -19,9 +19,6 @@ Ext.define('MYSSI.model.Project', {
     }, {
         name: 'status',
         type: 'int'
-    }, {
-        name: 'state_name',
-        type: 'string'
     }],
     
     idProperty: 'id',
