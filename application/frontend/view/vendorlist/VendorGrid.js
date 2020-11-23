@@ -65,9 +65,9 @@ Ext.define('MYSSI.view.vendorlist.VendorGrid' ,{
 				dataIndex: 'id',
 				flex:0
 			},{
-				header: 'Customer Name',
+				header: 'Vendor Name',
 				flex:1,
-				dataIndex: 'custname'
+				dataIndex: 'vendor_name'
 			}]
         });
 		

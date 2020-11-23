@@ -30,15 +30,13 @@ Ext.define('MYSSI.model.Vendor', {
     idProperty: 'id',
     titleProperty: 'vendor_name',
 
-    model_function: 'vendors',
-
     proxy: {
         type: 'custProxy',
         api: {
-            create: this.model_function + '/create', 
-            read: this.model_function + '/read',
-            update: this.model_function + '/update',
-            destroy: this.model_function + '/destroy',
+            create: 'vendors/create', 
+            read: 'vendors/read',
+            update: 'vendors/update',
+            destroy: 'vendors/destroy',
         },
         reader: {
             type: 'json',

@@ -7,7 +7,7 @@
     RewriteCond $1 !^(resources|system|application)
 
     # do not rewrite for php files in the document root, robots.txt or the maintenance page
-    RewriteCond $1 !^([^\..]+\.php|robots\.txt)
+    RewriteCond $1 !^([^\..]+\.php|robots\.txt|favicon\.ico)
 
     # but rewrite everything else
     RewriteRule ^(.*)$ index.php/$1 [L]
