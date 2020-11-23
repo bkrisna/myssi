@@ -35,7 +35,8 @@ class Vendors extends MY_Controller {
 			'vendor_pic_name' => $items->vendor_pic_name,
 			'vendor_pic_tel' => $items->vendor_pic_tel,
             'vendor_pic_email' => $items->vendor_pic_email,
-            'vendor_addr' => $items->vendor_addr
+			'vendor_addr' => $items->vendor_addr,
+			'vendor_alias' => $items->vendor_alias
         );
 
 	    $insert = $this->md->insert_entry($item_data);

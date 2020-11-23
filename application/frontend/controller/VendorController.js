@@ -43,13 +43,13 @@ Ext.define('MYSSI.controller.VendorController', {
 
     init: function() {
         this.control({
-            'navigation': {
+            'VendorGrid': {
                 itemAdd: this.newRecord,
                 itemDelete: this.confirmDelete,
                 itemEdit: this.startEdit,
                 itemSelect: this.startEdit
             },
-            'navigation > toolbar > searchfield': {
+            'VendorGrid > toolbar > searchfield': {
                 buttonSearchClick: this.searchButtonClick,
 				buttonClearClick: this.clearButtonClick
             },
