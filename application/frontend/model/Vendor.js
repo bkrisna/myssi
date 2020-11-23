@@ -1,42 +1,44 @@
-Ext.define('MYSSI.model.Project', {
+Ext.define('MYSSI.model.Vendor', {
     extend: 'Ext.data.Model',
 
 	fields: [{
         name: 'id',
         type: 'int'
     }, {
-        name: 'projectname',
+        name: 'vendor_name',
         type: 'string'
     }, {
-        name: 'iwo',
+        name: 'vendor_url',
         type: 'string'
     }, {
-        name: 'start_date',
-        type: 'date'
+        name: 'vendor_addr',
+        type: 'string'
     }, {
-        name: 'end_date',
-        type: 'date'
+        name: 'vendor_alias',
+        type: 'string'
     }, {
-        name: 'status',
-        type: 'int'
+        name: 'vendor_pic_name',
+        type: 'string'
     }, {
-        name: 'customer_id',
-        type: 'int'
+        name: 'vendor_pic_tel',
+        type: 'string'
     }, {
-        name: 'note',
+        name: 'vendor_pic_email',
         type: 'string'
     }],
     
     idProperty: 'id',
-    titleProperty: 'projectname',
+    titleProperty: 'vendor_name',
+
+    model_function: 'vendors',
 
     proxy: {
         type: 'custProxy',
         api: {
-            create: 'projects/create', 
-            read: 'projects/read',
-            update: 'projects/update',
-            destroy: 'projects/destroy',
+            create: this.model_function + '/create', 
+            read: this.model_function + '/read',
+            update: this.model_function + '/update',
+            destroy: this.model_function + '/destroy',
         },
         reader: {
             type: 'json',

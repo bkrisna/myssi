@@ -1,86 +1,79 @@
-Ext.define('MYSSI.controller.ProjectController', {
+Ext.define('MYSSI.controller.VendorController', {
     extend:	'Ext.app.Controller',
-    stores:	[
-                'Projects',
-                'ProjectStates',
-                'Customers'
-            ],
-
-    models:	[
-                'Project',
-                'ProjectState',
-                'Customer'
-            ],
-
+    stores:	['Vendors'],
+    models:	['Vendor'],
     views: 	[
-        'projectlist.ProjectSurface',
-        'projectlist.ProjectGrid', 
-        'projectlist.ProjectEditor',
-        'projectlist.ProjectEditorTab',
+        'vendorlist.VendorSurface',
+        'vendorlist.VendorGrid', 
+        'vendorlist.VendorEditor',
+        'vendorlist.VendorEditorTab',
     ],
 
-    storeClassName: 'Projects',
-    modelClassName: 'Project',
+    storeClassName: 'Vendors',
+    modelClassName: 'Vendor',
 
-    storeClass: 'MYSSI.store.Projects',
-    modelClass: 'MYSSI.model.Project',
+    storeClass: 'MYSSI.store.Vendors',
+    modelClass: 'MYSSI.model.Vendor',
 
-    navigationClass: 'ProjectGrid',
-	editorClass: 'ProjectEditor',
-	newItemText: "New Project",
+    navigationClass: 'VendorGrid',
+	editorClass: 'VendorEditor',
+	newItemText: "New Vendor",
 
-    deleteMessage: "Do you really wish to delete the project ",
-    deleteTitle: "Delete Project",
-    newItemText: "New Project",
+    deleteMessage: "Do you really wish to delete the vendors with name: ",
+    deleteTitle: "Delete Vendor",
 
     /**
      * @var {string} The record field to read the title property from
      */
-    titleProperty: 'projectname',
+    titleProperty: 'vendor_name',
 
     refs: [{
-		ref: 'projSurface',
-		selector: 'ProjectSurface'
+		ref: 'surface',
+		selector: 'VendorSurface'
 	}, {
 		ref: 'navigation',
-		selector: 'ProjectGrid'
+		selector: 'VendorGrid'
 	}, {
 		ref: 'editorPanel',
-		selector: 'ProjectEditor'
+		selector: 'VendorEditor'
 	}, {
         ref: 'editorTabPanel',
-		selector: 'ProjectEditorTab'
+		selector: 'VendorEditorTab'
     }],
 
     init: function() {
         this.control({
-            'ProjectGrid': {
+            'navigation': {
                 itemAdd: this.newRecord,
                 itemDelete: this.confirmDelete,
                 itemEdit: this.startEdit,
                 itemSelect: this.startEdit
             },
-            'ProjectGrid > toolbar > searchfield': {
+            'navigation > toolbar > searchfield': {
                 buttonSearchClick: this.searchButtonClick,
 				buttonClearClick: this.clearButtonClick
             },
         });
     },
 
+    getLocalStore: function() {
+        return this.getVendorsStore();
+    },
+
     searchButtonClick: function(val) {
-        this.getProjectsStore().load({ params: { query: val } });
+        this.getLocalStore().load({ params: { query: val } });
     },
     
     clearButtonClick: function(e) {
-        this.getProjectsStore().load();
+        this.getLocalStore().load();
     },
 
     createEditor: function (title)
     {
-        var editor = Ext.widget('ProjectEditor', {
+        var editor = Ext.widget('VendorEditor', {
             store: this.storeClassName,
             title: title,
-            iconCls: 'fugue-icon report-paper',
+            iconCls: 'fugue-icon user-business',
             model: this.modelClassName,
             closable: true,
             titleProperty: this.titleProperty,
@@ -131,7 +124,7 @@ Ext.define('MYSSI.controller.ProjectController', {
 
     onItemSaved: function (record)
     {
-        this.getProjectsStore().load();
+        this.getLocalStore().load();
     },
 
     newRecord: function (defaults)
@@ -171,6 +164,6 @@ Ext.define('MYSSI.controller.ProjectController', {
         }
 
         r.destroy();
-        this.getProjectsStore().load();
+        this.getLocalStore().load();
     },
 });

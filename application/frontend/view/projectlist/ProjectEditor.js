@@ -19,20 +19,31 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 xtype: 'textfield',
                 name: 'iwo',
                 labelWidth: 150,
+                anchor: '95%',
                 fieldLabel: "Project IWO"
             }, {
-                xtype: 'datefield',
-                name: 'customer',
+                xtype: 'combobox',
+                anchor: '95%',
+                name: 'customer_id',
+                editable: 'false',
                 labelWidth: 150,
-                fieldLabel: "Custiner"
+                fieldLabel: "End Customer",
+                store: 'Customers',
+                displayField: 'custname',
+                valueField: 'id',
+                queryMode: 'remote',
+                allowBlank: 'false',
+                emptyText: '-- select end customer --'
             }, {
                 xtype: 'datefield',
                 name: 'start_date',
                 labelWidth: 150,
+                anchor: '95%',
                 fieldLabel: "Project Start Date"
             }, {
                 xtype: 'datefield',
                 name: 'end_date',
+                anchor: '95%',
                 labelWidth: 150,
                 fieldLabel: "Project End Date"
             }]
@@ -42,6 +53,7 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
             layout: 'anchor',
             items: [{
                 xtype: 'combobox',
+                anchor: '100%',
                 name: 'status',
                 editable: 'false',
                 labelWidth: 150,
@@ -54,6 +66,7 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 emptyText: '-- select state --'
             }, {
                 xtype: 'textarea',
+                anchor: '100%',
                 name: 'note',
                 labelWidth: 150,
                 fieldLabel: "Project Notes"

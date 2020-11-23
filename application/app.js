@@ -73,6 +73,7 @@ Ext.application({
         'CustomerController', 
         'DacenController',
         'ProjectController',
+        'VendorController',
         'MasterDataController'
     ],
     /*controllers: ['Surface', 'CustomerController'],*/
