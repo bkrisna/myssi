@@ -26,7 +26,9 @@ class Projects_model extends CI_Model {
             $this->table.'.iwo',
             $this->table.'.start_date',
             $this->table.'.end_date',
-            $this->table.'.status'
+            $this->table.'.status',
+            $this->table.'.customer_id',
+            $this->table.'.note'
 		);
 
 		/*$this->table_fields_join = array(

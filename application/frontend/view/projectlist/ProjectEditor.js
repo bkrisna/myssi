@@ -4,50 +4,62 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
     modelClassName: 'MYSSI.model.Project',
 
     items: [{
-            xtype: 'textfield',
-            name: 'projectname',
-            fieldLabel: "Project Name"
-        }, {
-            xtype: 'textfield',
-            name: 'iwo',
-            fieldLabel: "Project IWO"
-        }, {
+        xtype: 'textfield',
+        name: 'projectname',
+        fieldLabel: "Project Name"
+    }, {
+        xtype: 'container',
+        anchor: '100%',
+        layout: 'hbox',
+        items: [{
             xtype: 'container',
-            anchor: '100%',
-            layout: 'hbox',
+            flex: 1,
+            layout: 'anchor',
             items: [{
-                xtype: 'container',
-                flex: 1,
-                layout: 'anchor',
-                items: [{
-                    xtype: 'datefield',
-                    name: 'start_date',
-                    labelWidth: 150,
-                    fieldLabel: "Project Start Date"
-                }]
+                xtype: 'textfield',
+                name: 'iwo',
+                labelWidth: 150,
+                fieldLabel: "Project IWO"
             }, {
-                xtype: 'container',
-                flex: 1,
-                layout: 'anchor',
-                items: [{
-                    xtype: 'datefield',
-                    name: 'end_date',
-                    labelWidth: 150,
-                    fieldLabel: "Project End Date"
-                }]
+                xtype: 'datefield',
+                name: 'customer',
+                labelWidth: 150,
+                fieldLabel: "Custiner"
+            }, {
+                xtype: 'datefield',
+                name: 'start_date',
+                labelWidth: 150,
+                fieldLabel: "Project Start Date"
+            }, {
+                xtype: 'datefield',
+                name: 'end_date',
+                labelWidth: 150,
+                fieldLabel: "Project End Date"
             }]
         }, {
-            xtype: 'combobox',
-            name: 'status',
-            editable: 'false',
-            fieldLabel: "Project State",
-            store: 'ProjectStates',
-            displayField: 'state_name',
-            valueField: 'id',
-            queryMode: 'remote',
-            allowBlank: 'false',
-            emptyText: '-- select state --'
-        }
-    ],
+            xtype: 'container',
+            flex: 1,
+            layout: 'anchor',
+            items: [{
+                xtype: 'combobox',
+                name: 'status',
+                editable: 'false',
+                labelWidth: 150,
+                fieldLabel: "Project State",
+                store: 'ProjectStates',
+                displayField: 'state_name',
+                valueField: 'id',
+                queryMode: 'remote',
+                allowBlank: 'false',
+                emptyText: '-- select state --'
+            }, {
+                xtype: 'textarea',
+                name: 'note',
+                labelWidth: 150,
+                fieldLabel: "Project Notes"
+            }]
+        }]
+    }],
+
     saveText: "Save Project"
 });
