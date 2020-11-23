@@ -37,7 +37,7 @@ Ext.define('MYSSI.view.Surface', {
                 }, {
                     xtype: 'VendorSurface',
                     title: 'Vendor Manager',
-                    iconCls: 'web-icon report_picture'
+                    iconCls: 'fugue-icon user-business'
                 }, {
                     xtype: 'MasterDataSurface',
                     title: 'Master Data Manager',
