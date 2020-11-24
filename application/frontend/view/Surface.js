@@ -18,7 +18,7 @@ Ext.define('MYSSI.view.Surface', {
             },{
                 xtype: 'tabpanel',
                 region: 'center',
-                items: [/*{
+                items: [{
                     xtype: 'AssetSurface',
                     title: 'Asset Manager',
                     iconCls: 'web-icon brick',
@@ -26,7 +26,7 @@ Ext.define('MYSSI.view.Surface', {
                     xtype: 'CustomerSurface',
                     title: 'Customer Manager',
                     iconCls: 'fugue-icon user-business'
-                },*/ {
+                }, {
                     xtype: 'DacenSurface',
                     title: 'Datacenter Manager',
                     iconCls: 'web-icon building_key'
