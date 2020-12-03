@@ -3,13 +3,15 @@ Ext.define('MYSSI.controller.ProjectController', {
     stores:	[
                 'Projects',
                 'ProjectStates',
-                'Customers'
+                'Customers',
+                'VendorProjects'
             ],
 
     models:	[
                 'Project',
                 'ProjectState',
-                'Customer'
+                'Customer',
+                'VendorProject'
             ],
 
     views: 	[
@@ -17,6 +19,8 @@ Ext.define('MYSSI.controller.ProjectController', {
         'projectlist.ProjectGrid', 
         'projectlist.ProjectEditor',
         'projectlist.ProjectEditorTab',
+        'projectlist.ProjectEditorProperties',
+        'projectlist.projectvendor.ProjectVendorGrid',
     ],
 
     storeClassName: 'Projects',
@@ -77,23 +81,48 @@ Ext.define('MYSSI.controller.ProjectController', {
 
     createEditor: function (title)
     {
-        var editor = Ext.widget('ProjectEditor', {
-            store: this.storeClassName,
-            title: title,
-            iconCls: 'fugue-icon report-paper',
-            model: this.modelClassName,
-            closable: true,
-            titleProperty: this.titleProperty,
-            listeners: {
-                editorClose: Ext.bind(function (m)
-                {
-                    this.getEditorTabPanel().remove(m);
-                }, this)
-            }
-        });
+        if (title == this.newItemText) {
+            var editor = Ext.widget('ProjectEditor', {
+                store: this.storeClassName,
+                title: title,
+                iconCls: 'fugue-icon report-paper',
+                model: this.modelClassName,
+                closable: true,
+                titleProperty: this.titleProperty,
+                listeners: {
+                    editorClose: Ext.bind(function (m)
+                    {
+                        this.getEditorTabPanel().remove(m);
+                    }, this)
+                }
+            });
 
-        editor.on("itemSaved", this.onItemSaved, this);
-        return editor;
+            editor.on("itemSaved", this.onItemSaved, this);
+            return editor;
+        } else {
+            var editor = Ext.widget('ProjectEditor', {
+                store: this.storeClassName,
+                model: this.modelClassName,
+                titleProperty: "",
+                border: false,
+                listeners: {
+                    editorClose: Ext.bind(function (m)
+                    {
+                        this.getEditorTabPanel().remove(m);
+                    }, this)
+                }
+            });
+
+            editor.on("itemSaved", this.onItemSaved, this);
+
+            var editorwithprop = Ext.widget('ProjectEditorProperties', {
+                title: title,
+                iconCls: 'fugue-icon report-paper',
+                closable: true,
+                editor : editor
+            });
+            return editorwithprop;
+        }
     },
 
     findEditor: function (id) {
@@ -107,7 +136,7 @@ Ext.define('MYSSI.controller.ProjectController', {
     },
 
     startEdit: function (id) {
-        //Ext.Msg.alert('test', id);
+        /*Ext.Msg.alert('test', id);*/
         var editor = this.findEditor(id);
 
         if (editor !== null) {
@@ -123,7 +152,7 @@ Ext.define('MYSSI.controller.ProjectController', {
             success: function (record, operation)
             {
                 editor = this.createEditor(record.get(this.titleProperty));
-                editor.editItem(record);
+                editor.getEditor().editItem(record);
                 this.getEditorTabPanel().add(editor).show();
             }
         });

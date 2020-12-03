@@ -1,4 +1,4 @@
-Ext.define('MYSSI.model.ProjectVendor', {
+Ext.define('MYSSI.model.VendorProject', {
     extend: 'Ext.data.Model',
 
 	fields: [{
@@ -31,6 +31,15 @@ Ext.define('MYSSI.model.ProjectVendor', {
     }, {
         name: 'type_name',
         type: 'string'
+    }, {
+        name: 'projectname',
+        type: 'string'
+    }, {
+        name: 'iwo',
+        type: 'string'
+    }, {
+        name: 'status',
+        type: 'string'
     }],
     
     idProperty: 'id',
@@ -39,10 +48,10 @@ Ext.define('MYSSI.model.ProjectVendor', {
     proxy: {
         type: 'custProxy',
         api: {
-            create: 'projectvendors/create', 
-            read: 'projectvendors/read',
-            update: 'projectvendors/update',
-            destroy: 'projectvendors/destroy',
+            create: 'vendorproject/create', 
+            read: 'vendorproject/read',
+            update: 'vendorproject/update',
+            destroy: 'vendorproject/destroy',
         },
         reader: {
             type: 'json',

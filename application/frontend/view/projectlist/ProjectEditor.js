@@ -72,7 +72,17 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 fieldLabel: "Project Notes"
             }]
         }]
-    }],
+    }/*, {
+        xtype:'tabpanel',
+        activeTab: 0,
+        layout: 'fit',
+        anchor: '100% 75%',
+        items: [{
+            xtype:'ProjectVendorGrid',
+            title: 'Project Vendors',
+            store: 'VendorProjects',
+        }]
+    }*/],
 
     saveText: "Save Project"
 });

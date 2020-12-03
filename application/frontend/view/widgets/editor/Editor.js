@@ -17,9 +17,6 @@ Ext.define('MYSSI.view.widgets.editor.Editor', {
     enableButtons: true,
     titleProperty: 'name',
     editAfterSave: true,
-
-    // If false, determinates if we should sync via the store or the record itself.
-    // If true, always syncs the record via it's own proxy.
     syncDirect: false,
 
     initComponent: function ()
