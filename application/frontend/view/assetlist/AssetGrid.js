@@ -4,7 +4,6 @@ Ext.define('MYSSI.view.assetlist.AssetGrid' ,{
 	id: 'assetGrid',
     iconCls: 'web-icon brick',
 	title : 'Asset List',
-	//store: 'assetlist',
 
 	buttonTextMode: 'show',
 
