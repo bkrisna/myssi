@@ -2,12 +2,15 @@ Ext.define('MYSSI.view.widgets.editor.EditorProperties', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.EditorProperties',
     editor: null,
-    storeClassName: null,
-    modelClassName: null,
+    storeClassName: '',
+    modelClassName: '',
+    iconCls: '',
+    titleProperty: '',
+    editorClassName: '',
 
     
     initComponent: function() {
-        this.callParent(arguments);
+       this.callParent(arguments);
     },
 
     getEditor: function() {
@@ -24,6 +27,10 @@ Ext.define('MYSSI.view.widgets.editor.EditorProperties', {
 
     getRecordId: function() {
         return this.editor.getRecordId();
+    },
+
+    getRecord: function() {
+        return this.editor.getRecord();
     },
 
     _onEditorClose: function(m) {

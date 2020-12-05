@@ -4,6 +4,7 @@ Ext.define('MYSSI.view.projectlist.ProjectSurface', {
     
     navigationClass: 'ProjectGrid',
     editorClass: 'ProjectEditorTab',
+    propertiesClass: 'ProjectEditorProperties',
     titleProperty: '',
     
     initComponent: function() {
@@ -20,11 +21,24 @@ Ext.define('MYSSI.view.projectlist.ProjectSurface', {
                 store: 'Projects',
                 titleProperty: this.titleProperty
             }, {
-				xtype: this.editorClass,
-                region: "center",
-                layout: 'fit',
-                plugins: Ext.create('Ext.ux.TabCloseMenu')
-			}]
+                region: 'center',
+                layout: 'border',
+                border: false,
+                items: [{
+                    xtype: this.editorClass,
+                    region: "center",
+                    minHeight: 300,
+                    split: true,
+                    layout: 'fit',
+                    plugins: Ext.create('Ext.ux.TabCloseMenu')
+                }, {
+                    xtype: this.propertiesClass,
+                    region: "south",
+                    minHeight: 300,
+                    split: true,
+                    layout: 'fit',
+                }]
+            }]
         });
 
         this.callParent(arguments);

@@ -32,15 +32,17 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
             model: this.editorModelName,
             closable: true,
             titleProperty: this.titleProperty,
-            listeners: {
+            /*listeners: {
                 editorClose: Ext.bind(function (m)
                 {
                     this.onEditorClosed(m);
                 }, this)
-            }
+            }*/
         });
 
         editor.on("itemSaved", this.onItemSaved, this);
+        editor.on("editorClose", this.onEditorClosed, this);
+        editor.on("close", this.onTabClose, this);
         return editor;
     },
 
@@ -114,6 +116,14 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
         this.getNavigation().getStore().load();
     },
 
+    syncTabNav: function() {
+        this.getNavigation().getSelectionModel().deselectAll();
+        if ( this.getEditorTabPanel().items.getCount() > 0 ) {
+            var r = this.getEditorTabPanel().getActiveTab().getRecord();
+            this.getNavigation().getSelectionModel().select(r);
+        }
+    },
+
     onNavSearchButtonClick: function(val) {
         this.getNavigation().getStore().load({ params: { query: val } });
     },
@@ -124,11 +134,18 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
 
     onEditorClosed: function(m) {
         this.getEditorTabPanel().remove(m);
-        this.getNavigation().getSelectionModel().deselectAll();
+        this.syncTabNav();
     },
 
-    onItemSaved: function (record)
-    {
+    onItemSaved: function (record) {
         this.getNavigation().getStore().load();
+    },
+
+    onTabClose: function () {
+        this.syncTabNav();
+    },
+
+    onTabChange: function(tabpanel, newCard, oldCard) {
+        this.syncTabNav();
     }
 });

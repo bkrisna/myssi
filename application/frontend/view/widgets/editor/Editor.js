@@ -82,6 +82,16 @@ Ext.define('MYSSI.view.widgets.editor.Editor', {
             return null;
         }
     },
+
+    getRecord: function ()
+    {
+        if (this.record) {
+            return this.record;
+        } else {
+            return null;
+        }
+    },
+
     _onItemSave: function ()
     {
         // Disable the save button to indicate progress

@@ -72,7 +72,7 @@ class Projects extends MY_Controller {
 		}
 
 		if ($this->input->get('query', TRUE) > '') {
-			$where['field'] = 'dcname';
+			$where['field'] = 'projectname';
 			$where['value'] = $this->input->get('query', TRUE);
 			$where['operator'] = "LIKE";
 

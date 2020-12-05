@@ -30,7 +30,8 @@ Ext.define('MYSSI.controller.ProjectController', {
     modelClass: 'MYSSI.model.Project',
 
     navigationClassName: 'ProjectGrid',
-	editorClassName: 'ProjectEditor',
+    editorClassName: 'ProjectEditor',
+    //editorClassName: 'ProjectEditorProperties',
     
     newItemText: "New Project",
 
@@ -64,6 +65,9 @@ Ext.define('MYSSI.controller.ProjectController', {
                 buttonSearchClick: this.onNavSearchButtonClick,
 				buttonClearClick: this.onNavClearButtonClick
             },
+            'ProjectEditorTab': {
+                tabchange: this.onTabChange
+            }
         });
     }
 });
