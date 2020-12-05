@@ -18,6 +18,7 @@ Ext.define('MYSSI.view.widgets.editor.Editor', {
     titleProperty: 'name',
     editAfterSave: true,
     syncDirect: false,
+    modelClassName: '',
 
     initComponent: function ()
     {
@@ -58,7 +59,6 @@ Ext.define('MYSSI.view.widgets.editor.Editor', {
     newItem: function (defaults)
     {
         Ext.apply(defaults, {});
-        //var j = Ext.create(this.model, defaults);
         var j = Ext.create(this.modelClassName, defaults);
         this.editItem(j);
     },
