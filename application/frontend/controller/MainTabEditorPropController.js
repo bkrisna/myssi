@@ -119,14 +119,18 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
                 });
             }
         } else {
-            for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
-                this.getPropertiesTabPanel().items.getAt(i).getStore().load({
-                    params: {
-                        paramname: this.idParamName,
-                        value: 0
-                    }
-                });
-            }
+            this.resetPropertiesTab();
+        }
+    },
+
+    resetPropertiesTab: function() {
+        for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
+            this.getPropertiesTabPanel().items.getAt(i).getStore().load({
+                params: {
+                    paramname: this.idParamName,
+                    value: 0
+                }
+            });
         }
     },
 
