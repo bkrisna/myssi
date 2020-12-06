@@ -1,5 +1,5 @@
 Ext.define('MYSSI.controller.ProjectController', {
-    extend:	'MYSSI.controller.MainTabEditorController',
+    extend:	'MYSSI.controller.MainTabEditorPropController',
     stores:	[
                 'Projects',
                 'ProjectStates',
@@ -41,6 +41,8 @@ Ext.define('MYSSI.controller.ProjectController', {
 
     editorIconCls: "fugue-icon report-paper",
 
+    idParamName: 'project_id',
+
     refs: [{
 		ref: 'projSurface',
 		selector: 'ProjectSurface'
@@ -50,6 +52,9 @@ Ext.define('MYSSI.controller.ProjectController', {
 	}, {
         ref: 'editorTabPanel',
 		selector: 'ProjectEditorTab'
+    }, {
+        ref: 'propertiesTabPanel',
+		selector: 'ProjectEditorProperties'
     }],
 
     init: function() {

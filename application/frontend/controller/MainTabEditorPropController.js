@@ -3,22 +3,15 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
     
     editorStoreName: '',
     editorModelName: '',
-
     storeClass: '',
     modelClass: '',
-
     navigationClassName: "",
 	editorClassName: "",
-    
     newItemText: "",
-
     deleteMessage: "",
     deleteTitle: "",
-
     titleProperty: "",
-
     editorIconCls: "",
-
     idParamName: "",
 
     init: function() {
@@ -118,11 +111,10 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
             var r = this.getEditorTabPanel().getActiveTab().getRecord();
             this.getNavigation().getSelectionModel().select(r);
             for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
-                this.getEditorTabPanel().items.getAt(i).getStore().load({ params: { this.idParamName: r.getId() } });
-                
-                /*if (this.getEditorTabPanel().items.getAt(i).getRecordId() == id) {
-                    return this.getEditorTabPanel().items.getAt(i);
-                }*/
+                this.getPropertiesTabPanel().items.getAt(i).getStore().load({
+                    paramname: $this.idParamName,
+                    value: r.getId()
+                });
             }
         }
     },
