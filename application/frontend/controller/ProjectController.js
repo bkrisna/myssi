@@ -31,7 +31,6 @@ Ext.define('MYSSI.controller.ProjectController', {
 
     navigationClassName: 'ProjectGrid',
     editorClassName: 'ProjectEditor',
-    //editorClassName: 'ProjectEditorProperties',
     
     newItemText: "New Project",
 

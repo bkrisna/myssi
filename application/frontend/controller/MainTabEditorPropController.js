@@ -1,4 +1,4 @@
-Ext.define('MYSSI.controller.MainTabEditorController', {
+Ext.define('MYSSI.controller.MainTabEditorPropController', {
     extend:	'Ext.app.Controller',
     
     editorStoreName: '',
@@ -19,6 +19,8 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
 
     editorIconCls: "",
 
+    idParamName: "",
+
     init: function() {
         this.callParent(arguments);
     },
@@ -32,12 +34,6 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
             model: this.editorModelName,
             closable: true,
             titleProperty: this.titleProperty,
-            /*listeners: {
-                editorClose: Ext.bind(function (m)
-                {
-                    this.onEditorClosed(m);
-                }, this)
-            }*/
         });
 
         editor.on("itemSaved", this.onItemSaved, this);
@@ -121,6 +117,13 @@ Ext.define('MYSSI.controller.MainTabEditorController', {
         if ( (this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null) ) {
             var r = this.getEditorTabPanel().getActiveTab().getRecord();
             this.getNavigation().getSelectionModel().select(r);
+            for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
+                this.getEditorTabPanel().items.getAt(i).getStore().load({ params: { this.idParamName: r.getId() } });
+                
+                /*if (this.getEditorTabPanel().items.getAt(i).getRecordId() == id) {
+                    return this.getEditorTabPanel().items.getAt(i);
+                }*/
+            }
         }
     },
 

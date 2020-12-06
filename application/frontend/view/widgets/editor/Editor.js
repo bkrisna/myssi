@@ -19,6 +19,7 @@ Ext.define('MYSSI.view.widgets.editor.Editor', {
     editAfterSave: true,
     syncDirect: false,
     modelClassName: '',
+    waitMsgTarget: true,
 
     initComponent: function ()
     {

@@ -27,14 +27,14 @@ Ext.define('MYSSI.view.projectlist.ProjectSurface', {
                 items: [{
                     xtype: this.editorClass,
                     region: "center",
-                    minHeight: 300,
+                    minHeight: 250,
                     split: true,
                     layout: 'fit',
                     plugins: Ext.create('Ext.ux.TabCloseMenu')
                 }, {
                     xtype: this.propertiesClass,
                     region: "south",
-                    minHeight: 300,
+                    minHeight: 250,
                     split: true,
                     layout: 'fit',
                 }]
