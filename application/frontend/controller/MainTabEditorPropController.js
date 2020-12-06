@@ -112,8 +112,10 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
             this.getNavigation().getSelectionModel().select(r);
             for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
                 this.getPropertiesTabPanel().items.getAt(i).getStore().load({
-                    paramname: $this.idParamName,
-                    value: r.getId()
+                    params: {
+                        paramname: this.idParamName,
+                        value: r.getId()
+                    }
                 });
             }
         }
