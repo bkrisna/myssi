@@ -81,6 +81,14 @@ class Vendorproject extends MY_Controller {
 			array_push($filter, $where);
 		}
 
+		if ($this->input->get('paramname', TRUE) > '') {
+			$where['field'] = ($this->input->get('paramname', TRUE) == 'project_id') ? 'project_id' : 'vendor_id';
+			$where['value'] = $this->input->get('value', TRUE);
+			$where['operator'] = "=";
+
+			array_push($filter, $where);
+		}
+
 	    $sorts = json_decode($this->input->get('sort', TRUE));
 	    if ($sorts) {
 		    foreach ($sorts as $sort) {
