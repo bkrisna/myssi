@@ -63,6 +63,7 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
                 editor = this.createEditor(record.get(this.titleProperty));
                 editor.editItem(record);
                 this.getEditorTabPanel().add(editor).show();
+                this.loadPropertiesTab(record.getId());
             }
         });
     },
@@ -73,6 +74,7 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
         var editor = this.createEditor(this.newItemText);
         editor.newItem(defaults);
         this.getEditorTabPanel().add(editor).show();
+        this.loadPropertiesTab(0);
     },
 
     confirmDelete: function ()
@@ -110,27 +112,26 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
         if ( (this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null) ) {
             var r = this.getEditorTabPanel().getActiveTab().getRecord();
             this.getNavigation().getSelectionModel().select(r);
-            for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
-                this.getPropertiesTabPanel().items.getAt(i).getStore().load({
-                    params: {
-                        paramname: this.idParamName,
-                        value: r.getId()
-                    }
-                });
-            }
+            this.loadPropertiesTab(r.getId());
         } else {
-            this.resetPropertiesTab();
+            this.loadPropertiesTab(0);
         }
     },
 
-    resetPropertiesTab: function() {
+    loadPropertiesTab: function(id) {
         for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
             this.getPropertiesTabPanel().items.getAt(i).getStore().load({
                 params: {
                     paramname: this.idParamName,
-                    value: 0
+                    value: id
                 }
             });
+        }
+    },
+
+    disablePropertiesTab: function(status) {
+        for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
+            (!status) ? this.getPropertiesTabPanel().items.getAt(i).enable : this.getPropertiesTabPanel().items.getAt(i).disable;
         }
     },
 
@@ -157,5 +158,9 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
 
     onTabChange: function(tabpanel, newCard, oldCard) {
         this.syncTabNav();
+    },
+
+    onAfterPropTabRender: function(comp, e) {
+        this.loadPropertiesTab(0);
     }
 });

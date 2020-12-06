@@ -71,6 +71,9 @@ Ext.define('MYSSI.controller.ProjectController', {
             },
             'ProjectEditorTab': {
                 tabchange: this.onTabChange
+            },
+            'ProjectEditorProperties': {
+                afterrender: this.onAfterPropTabRender
             }
         });
     }
