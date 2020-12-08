@@ -74,7 +74,46 @@ Ext.define('MYSSI.controller.ProjectController', {
             },
             'ProjectEditorProperties': {
                 afterrender: this.onAfterPropTabRender
+            },
+            'ProjectVendorGrid': {
+                itemAdd: this.onAttachVendor,
             }
         });
-    }
+    },
+
+    onAttachVendor: function() {
+        console.log('attach vendor');
+
+    },
+
+    createPropertiesEditorWindow: function(editclass, editstore, editmodel, titletemtext, record, isNew) {
+        var editor = Ext.create(editclass, {
+            store: editstore,
+            title: titletemtext,
+            model: editmodel,
+            listeners: {
+                editorClose: Ext.bind(function (m)
+                {
+                    this.getEditorWindow().close();
+                }, this)
+            },
+            editAfterSave: false
+        });
+
+        editor.on("itemSaved", this.onItemSaved, this);
+        (isNew) ? editor.newItem(record) : editor.editItem(record);
+
+        var edWin = Ext.create('Ext.window.Window', {
+            border: false,
+            layout: 'fit',
+            closable: true,
+            minWidth: 350,
+            resizable: false,
+            modal: true,
+            title: titletemtext,
+            items: [ editor ] 
+        });
+
+        return edWin;
+    },
 });

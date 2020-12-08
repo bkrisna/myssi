@@ -90,13 +90,13 @@ Ext.define('MYSSI.view.projectlist.projectvendor.ProjectVendorGrid' ,{
                 dataIndex: 'note'
 			}]
         });
-		
-		this.callParent(arguments);
 
-		this.getSelectionModel().on("select", this._onItemSelect, this);
+        this.getSelectionModel().on("select", this._onItemSelect, this);
 		this.getSelectionModel().on("deselect", this._onItemDeselect, this);
         this.getView().on("itemkeydown", this._onItemKeyPress, this);
         this.getView().on("celldblclick", this._onItemDblClick, this);
+		
+		this.callParent(arguments);
 	},
 
 	_updateDeleteButton: function ()

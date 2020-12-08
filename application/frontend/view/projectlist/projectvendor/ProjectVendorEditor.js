@@ -1,68 +1,43 @@
 Ext.define('MYSSI.view.assetlist.AssetListEditor', {
     extend: 'MYSSI.view.widgets.editor.Editor',
     alias: 'widget.AssetListEditor',
-    modelClassName: 'MYSSI.model.AssetList',
+    modelClassName: 'MYSSI.model.VendorProject',
 
-    items: [{
-        xtype: 'textfield',
-        fieldLabel: "Asset name",
-        name: 'assetname',
-        labelWidth: 100
-    }, {
-        xtype: 'textfield',
-        fieldLabel: "Serial Number",
-        name: 'serialnumber',
-        labelWidth: 100
-    }, {
-        xtype: 'textfield',
-        fieldLabel: "Function",
-        name: 'asset_function',
-        labelWidth: 100
-    }, {
-        xtype: 'combobox',
-        name: 'asset_type',
-        editable: false,
-        fieldLabel: "Asset Type",
-        store: 'AssetTypes',
-        displayField: 'type_name',
-        valueField: 'id',
-        queryMode: 'remote',
-        allowBlank: 'false',
-        emptyText: '-- select asset type --',
-        labelWidth: 100
-    }, {
-        xtype: 'checkbox',
-        fieldLabel: "Is an Engineered ",
-        name: 'is_engineered',
-        labelWidth: 100
-    }, {
-        xtype: 'checkbox',
-        fieldLabel: "Is virtual host",
-        name: 'is_virtualhost',
-        labelWidth: 100
-    }, {
-        xtype: 'combobox',
-        name: 'asset_model_id',
-        editable: false,
-        fieldLabel: "Asset Model",
-        store: 'AssetModels',
-        displayField: 'model_name',
-        valueField: 'id',
-        queryMode: 'remote',
-        allowBlank: 'false',
-        emptyText: '-- select asset model --',
-        labelWidth: 100
-    }, {
-        xtype: 'textfield',
-        fieldLabel: "CPU Core Count",
-        name: 'asset_cpu_core',
-        labelWidth: 100
-    }, {
-        xtype: 'textfield',
-        fieldLabel: "Memory Count",
-        name: 'asset_memory',
-        labelWidth: 100
-    }],
+    initComponent: function() {
+        Ext.apply(this, {
+            items: [{
+                xtype: 'container',
+                anchor: '100%',
+                flex: 1,
+                layout: 'fit',
+                items: [{}],
+            }, {
+                xtype: 'container',
+                anchor: '100%',
+                layout: 'hbox',
+                items: [{
+                    xtype: 'datefield',
+                    name: 'start_date',
+                    labelWidth: 150,
+                    anchor: '95%',
+                    fieldLabel: "Project Start Date"
+                }, {
+                    xtype: 'datefield',
+                    name: 'end_date',
+                    anchor: '95%',
+                    labelWidth: 150,
+                    fieldLabel: "Project End Date"
+                }, {
+                    xtype: 'textarea',
+                    anchor: '100%',
+                    name: 'note',
+                    labelWidth: 150,
+                    fieldLabel: "Notes"
+                }],
+            }]
+        });
+        this.callParent(arguments);
+    },
     
     saveText: "Save"
 });

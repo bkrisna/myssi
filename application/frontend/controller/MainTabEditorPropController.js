@@ -62,11 +62,9 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
             {
                 editor = this.createEditor(record.get(this.titleProperty));
                 editor.editItem(record);
-                var tabCard = this.getEditorTabPanel().add(editor);
-                tabCard.show();
-                this.getPropertiesTabPanel().setActiveTab(tabCard);
+                this.getEditorTabPanel().add(editor).show();
+                this.getEditorTabPanel().setActiveTab(editor);
                 this.loadPropertiesTab(record.getId());
-                this.syncTabNav();
             }
         });
     },
@@ -120,7 +118,6 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
         } else {
             this.loadPropertiesTab(0);
             this.getPropertiesTabPanel().hide();
-            console.log('prop disabled');
         }
     },
 
