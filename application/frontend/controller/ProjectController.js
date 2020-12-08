@@ -66,11 +66,11 @@ Ext.define('MYSSI.controller.ProjectController', {
                 itemSelect: this.startEdit
             },
             'ProjectGrid > toolbar > searchfield': {
-                buttonSearchClick: this.onNavSearchButtonClick,
-				buttonClearClick: this.onNavClearButtonClick
+                buttonSearchClick: this.onNavSearchButtonClick
             },
             'ProjectEditorTab': {
-                tabchange: this.onTabChange
+                tabchange: this.onTabChange,
+                close: this.onTabCloseTest
             },
             'ProjectEditorProperties': {
                 afterrender: this.onAfterPropTabRender

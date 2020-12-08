@@ -62,8 +62,11 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
             {
                 editor = this.createEditor(record.get(this.titleProperty));
                 editor.editItem(record);
-                this.getEditorTabPanel().add(editor).show();
+                var tabCard = this.getEditorTabPanel().add(editor);
+                tabCard.show();
+                this.getPropertiesTabPanel().setActiveTab(tabCard);
                 this.loadPropertiesTab(record.getId());
+                this.syncTabNav();
             }
         });
     },
@@ -109,14 +112,15 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
 
     syncTabNav: function() {
         this.getNavigation().getSelectionModel().deselectAll();
-        console.log(this.getEditorTabPanel().getActiveTab().getHeader().items);
-        if ( ((this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null)) || (this.getEditorTabPanel().getActiveTab(). ().title != this.newItemText)) {
+        if ((this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null) && (this.getEditorTabPanel().getActiveTab().title != this.newItemText)) {
             var r = this.getEditorTabPanel().getActiveTab().getRecord();
             this.getNavigation().getSelectionModel().select(r);
+            this.getPropertiesTabPanel().show();
             this.loadPropertiesTab(r.getId());
         } else {
             this.loadPropertiesTab(0);
-            this.disablePropertiesTab(true);
+            this.getPropertiesTabPanel().hide();
+            console.log('prop disabled');
         }
     },
 
@@ -128,12 +132,6 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
                     value: id
                 }
             });
-        }
-    },
-
-    disablePropertiesTab: function(status) {
-        for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
-            (status) ? this.getPropertiesTabPanel().items.getAt(i).disable : this.getPropertiesTabPanel().items.getAt(i).enable;
         }
     },
 
@@ -164,5 +162,6 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
 
     onAfterPropTabRender: function(comp, e) {
         this.loadPropertiesTab(0);
+        this.getPropertiesTabPanel().hide();
     }
 });
