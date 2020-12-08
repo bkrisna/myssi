@@ -109,12 +109,14 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
 
     syncTabNav: function() {
         this.getNavigation().getSelectionModel().deselectAll();
-        if ( (this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null) ) {
+        console.log(this.getEditorTabPanel().getActiveTab().getHeader().items);
+        if ( ((this.getEditorTabPanel().items.getCount() > 0) && (this.getEditorTabPanel().getActiveTab() != null)) || (this.getEditorTabPanel().getActiveTab(). ().title != this.newItemText)) {
             var r = this.getEditorTabPanel().getActiveTab().getRecord();
             this.getNavigation().getSelectionModel().select(r);
             this.loadPropertiesTab(r.getId());
         } else {
             this.loadPropertiesTab(0);
+            this.disablePropertiesTab(true);
         }
     },
 
@@ -131,7 +133,7 @@ Ext.define('MYSSI.controller.MainTabEditorPropController', {
 
     disablePropertiesTab: function(status) {
         for (var i = 0; i < this.getPropertiesTabPanel().items.getCount(); i++) {
-            (!status) ? this.getPropertiesTabPanel().items.getAt(i).enable : this.getPropertiesTabPanel().items.getAt(i).disable;
+            (status) ? this.getPropertiesTabPanel().items.getAt(i).disable : this.getPropertiesTabPanel().items.getAt(i).enable;
         }
     },
 

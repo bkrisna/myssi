@@ -63,7 +63,7 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 valueField: 'id',
                 queryMode: 'remote',
                 allowBlank: 'false',
-                emptyText: '-- select state --'
+                emptyText: '-- select project state --'
             }, {
                 xtype: 'textarea',
                 anchor: '100%',
@@ -72,17 +72,7 @@ Ext.define('MYSSI.view.projectlist.ProjectEditor', {
                 fieldLabel: "Project Notes"
             }]
         }]
-    }/*, {
-        xtype:'tabpanel',
-        activeTab: 0,
-        layout: 'fit',
-        anchor: '100% 75%',
-        items: [{
-            xtype:'ProjectVendorGrid',
-            title: 'Project Vendors',
-            store: 'VendorProjects',
-        }]
-    }*/],
+    }],
 
     saveText: "Save Project"
 });
